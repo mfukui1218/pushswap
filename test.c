@@ -10,13 +10,13 @@
 // 	if (!result)
 // 		return (NULL);
 // 	i = 0;
-// 	while(i++ < argc)
+// 	while (i++ < argc)
 // 	{
 // 		result[i] = malloc(sizeof(int) * 64);
 // 		if (!result[i])
 // 			return (NULL); 
 // 		j = 0;
-// 		while(rank[i])
+// 		while (rank[i])
 // 		{
 // 			result[i][j] = rank[i] % 2;
 // 			rank[i] /= 2;
@@ -36,7 +36,7 @@ void	ft_swap(int *x, int *y)
     int i;
 
 	i = 0;
-	while(i < 10)
+	while (i < 10)
 	{
 		*a = (1 << i);
 		i++;
