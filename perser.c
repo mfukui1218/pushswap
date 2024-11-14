@@ -28,17 +28,16 @@ void	ft_error(int i)
 		ft_printf("%s", "Error: Invalid instruction\n");
 }
 
-
-int	ft_duplication(int *arg)
+int	ft_duplication(int *arg, size_t size)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	while (arg[i])
+	while (i < size)
 	{
 		j = 0;
-		while (arg[i + j + 1])
+		while (i + j + 1 < size)
 		{
 			if (i != i + j + 1 && arg[i] == arg[i + j + 1])
 				return (1);

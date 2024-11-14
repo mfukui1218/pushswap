@@ -35,19 +35,29 @@ typedef struct s_stack
 	size_t	size;
 }	t_stack;
 
-
-void	ft_swap(t_stack *stack);
-void	ft_push(t_stack *st_a, t_stack *st_b);
-void	ft_rotate(t_stack *stack);
-void	ft_reverse_rotate(t_stack *stack);
+void	ft_swap(t_stack *stack, char c);
+void	ft_ss(t_stack *st_a, t_stack *st_b);
+void	ft_push(t_stack *st_a, t_stack *st_b, char c);
+void	ft_rotate(t_stack *stack, char c);
+void	ft_reverse_rotate(t_stack *stack, char c);
 void	ft_twosort(t_stack *stack);
-void	ft_threesort(t_stack *stack);
+void	ft_threesort(t_stack *stack, t_stack *stack_b, int flag);
 void	ft_fivesort(t_stack *st_a, t_stack *st_b);
-void	ft_radix_sort(t_stack *st_a, t_stack *st_b);
-size_t	*ft_assign_rank(int *str);
-size_t	ft_max_bitlen(int *rank);
+void	ft_algorithm(t_stack *st_a, t_stack *st_b, size_t bitlen);
+size_t	*ft_assign_rank(int *str, size_t size);
 size_t	ft_bitlen(size_t num);
 void	ft_error(int i);
-
+int		*ft_atoi_rmkd(char **str, size_t size);
+int		ft_duplication(int *arg, size_t size);
+t_stack	*init_stack(size_t size, size_t *values);
+void	ft_malloc_node(t_stack *stack);
+void	free_stack(t_stack *stack);
+void    ft_firstpush(t_stack *st_a, t_stack *st_b);
+size_t  ft_secondpush(t_stack *st_a, t_stack *st_b, size_t order);
+void    ft_thirdpush(t_stack *st_a, t_stack *st_b, size_t order, size_t c);
+void    ft_lastpush(t_stack *st_a, t_stack *st_b);
+size_t ft_strlenx(char **str);
+void print_stack(t_stack *stack);
+char *int_to_binary(int n);
 
 #endif

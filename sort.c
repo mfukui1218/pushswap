@@ -12,13 +12,13 @@
 
 #include "pushswap.h"
 
-void	ft_swap(t_stack *stack)
+void	ft_swap(t_stack *stack, char c)
 {
 	t_node	*first;
 	t_node	*second;
 
 	if (!stack->top || !stack->top->next)
-		return (NULL);
+		return ;
 	first = stack->top;
 	second = stack->top->next;
 	first->next = second->next;
@@ -28,14 +28,22 @@ void	ft_swap(t_stack *stack)
 	second->next = first;
 	first->prev = second;
 	stack->top = second;
+	ft_printf("s%c\n", c);
 }
 
-void	ft_push(t_stack *st_a, t_stack *st_b)
+void	ft_ss(t_stack *st_a, t_stack *st_b)
+{
+	ft_swap(st_a, 'a');
+	ft_swap(st_b, 'b');
+	write(1, "ss\n", 3);
+}
+
+void	ft_push(t_stack *st_a, t_stack *st_b, char c)
 {
 	t_node	*new_dst;
 
 	if (!st_a || !st_a->top)
-		return (NULL);
+		return ;
 	new_dst = st_a->top;
 	st_a->top = new_dst->next;
 	if (st_a->top)
@@ -46,15 +54,16 @@ void	ft_push(t_stack *st_a, t_stack *st_b)
 	st_b->top = new_dst;
 	st_a->size--;
 	st_b->size++;
+	ft_printf("p%c\n", c);
 }
 
-void	ft_rotate(t_stack *stack)
+void	ft_reverse_rotate(t_stack *stack, char c)
 {
 	t_node	*last;
 	t_node	*second_last;
 
 	if (!stack->top || !stack->top->next)
-		return (NULL);
+		return ;
 	last = stack->top;
 	while (last->next != NULL)
 		last = last->next;
@@ -64,15 +73,16 @@ void	ft_rotate(t_stack *stack)
 	last->next = stack->top;
 	stack->top->prev = last;
 	stack->top = last;
+	ft_printf("rr%c\n", c);
 }
 
-void	ft_revercse_rotate(t_stack *stack)
+void	ft_rotate(t_stack *stack, char c)
 {
 	t_node	*first;
 	t_node	*last;
 
 	if (!stack->top || !stack->top->next)
-		return (NULL);
+		return ;
 	first = stack->top;
 	last = stack->top;
 	while (last->next != NULL)
@@ -82,4 +92,5 @@ void	ft_revercse_rotate(t_stack *stack)
 	last->next = first;
 	first->prev = last;
 	first->next = NULL;
+	ft_printf("r%c\n", c);
 }
