@@ -6,7 +6,7 @@
 /*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 12:26:01 by mfukui            #+#    #+#             */
-/*   Updated: 2024/11/12 18:10:37 by mfukui           ###   ########.fr       */
+/*   Updated: 2024/11/25 19:35:35 by mfukui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ size_t	*ft_assign_rank(int *str, size_t size)
 		while (j < size)
 		{
 			if (!str)
-            {
-                ft_error(1);
-                free(result);
-                return NULL;
-            }
+				return (ft_error(1), free(result), NULL);
 			if (str[j] > str[i])
 				result[i]++;
 			j++;
@@ -63,45 +59,40 @@ int	*ft_atoi_rmkd(char **str, size_t argc)
 	int		sign;
 	int		*result;
 
-	result = (int *)malloc(sizeof(int) * ft_strlenx(str));
+	result = ft_calloc(argc, sizeof(int));
 	if (!result)
-		return (ft_error(4), NULL); 
+		return (ft_error(4), NULL);
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		result[i] = 0;
 		sign = 1;
 		j = 0;
-		while (str[i][j] == ' ' || (9 <= str[i][j] && str[i][j] <= 13))
-			j++;
-		if (str[i][j] == '+' || str[i][j] == '-')
+		while (is_sp(str[i][j]) == 1 || str[i][j] == '+' || str[i][j++] == '-')
 			if (str[i][j++] == '-')
 				sign = -1;
-		while ('0' <= str[i][j] && str[i][j] <= '9')
-		{
-			if ((INT_MAX - (str[i][j] - '0')) / 10 < result[i] * sign)
-				return (ft_error(3), free(result), NULL);
-			if ((INT_MIN + (str[i][j] - '0')) / 10 > result[i] * sign)
-				return (ft_error(3), free(result), NULL);
-			result[i] = result[i] * 10 + (str[i][j] - '0');
-			j++;
-		}
-		if(str[i][j] != '\0')
-			return(ft_error(1), NULL);
-		result[i] *= sign;
-		i++;
+		while (ft_isdigit(str[i][j++] == 1))
+			atoi_helper(str[i][j], result);
+		if (str[i][j] != '\0')
+			return (ft_error(1), NULL);
+		result[i++] *= sign;
 	}
-	if(ft_duplication(result, argc - 1) == 1)
-		return(ft_error(2), NULL);
+	if (ft_duplication(result, argc - 1) == 1)
+		return (ft_error(2), NULL);
 	return (result);
 }
 
-size_t ft_strlenx(char **str)
+void	atoi_helper(char str, int *res)
 {
-	size_t	i;
+	if ((INT_MAX - (str - '0')) / 10 < *res * sign)
+		return (ft_error(3), free(res), NULL);
+	if ((INT_MIN + (str - '0')) / 10 > *res * sign)
+		return (ft_error(3), free(res), NULL);
+	*res = *res * 10 + (str - '0');
+}
 
-	i = 0;
-	while(str[i])
-		i++;
-	return (i);
+int	is_sp(int c)
+{
+	if (c == ' ' || (9 <= c && c <= 13))
+		return (1);
+	return (0);
 }

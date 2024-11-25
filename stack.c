@@ -1,33 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/25 19:20:19 by mfukui            #+#    #+#             */
+/*   Updated: 2024/11/25 19:20:29 by mfukui           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pushswap.h"
-
-// t_stack	*init_stack(size_t s, size_t *values)
-// {
-// 	t_stack	*stack;
-// 	t_node	*node;
-// 	size_t	i;
-
-// 	stack = (t_stack *)malloc(sizeof(t_stack));
-// 	if (!stack)
-// 		return (ft_error(4), NULL);
-// 	stack->top = NULL;
-//     stack->size = 0;
-// 	i = 0;
-// 	while(i < s)
-// 	{
-// 		node = (t_node *)malloc(sizeof(t_node));
-// 		if (!node)
-// 			return (ft_malloc_node(stack), NULL);
-// 		node->data = values[i];
-//         node->next = stack->top;
-//         node->prev = NULL;
-// 		if (stack->top)
-//             stack->top->prev = node;
-//         stack->top = node;
-//         stack->size++;
-// 		i++;
-// 	}
-// 	return (stack);
-// }
 
 void	ft_malloc_node(t_stack *stack)
 {
@@ -58,31 +41,31 @@ void	free_stack(t_stack *stack)
 	free(stack);
 }
 
-t_stack *init_stack(size_t size, size_t *values)
+t_stack	*init_stack(size_t size, size_t *values)
 {
-    t_stack *stack;
-    t_node *node;
-    size_t i;
+	t_stack	*stack;
+	t_node	*node;
+	size_t	i;
 
-    stack = (t_stack *)malloc(sizeof(t_stack));
-    if (!stack)
-        return (ft_error(4), NULL);
-    stack->top = NULL;
-    stack->size = 0;
-    i = 0;
-    while (i < size)
-    {
-        node = (t_node *)malloc(sizeof(t_node));
-        if (!node)
-            return (free_stack(stack), NULL);
-        node->data = values[i];
-        node->next = stack->top;
-        node->prev = NULL;
-        if (stack->top)
-            stack->top->prev = node;
-        stack->top = node;
-        stack->size++;
-        i++;
-    }
-    return stack;
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!stack)
+		return (ft_error(4), NULL);
+	stack->top = NULL;
+	stack->size = 0;
+	i = 0;
+	while (i < size)
+	{
+		node = (t_node *)malloc(sizeof(t_node));
+		if (!node)
+			return (free_stack(stack), NULL);
+		node->data = values[i];
+		node->next = stack->top;
+		node->prev = NULL;
+		if (stack->top)
+			stack->top->prev = node;
+		stack->top = node;
+		stack->size++;
+		i++;
+	}
+	return (stack);
 }

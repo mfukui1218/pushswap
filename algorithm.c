@@ -6,7 +6,7 @@
 /*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:28:26 by mfukui            #+#    #+#             */
-/*   Updated: 2024/11/12 18:36:06 by mfukui           ###   ########.fr       */
+/*   Updated: 2024/11/25 18:54:00 by mfukui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_algorithm(t_stack *st_a, t_stack *st_b, size_t bitlen)
 	{
 		c = ft_secondpush(st_a, st_b, d);
 		i = 0;
-		while(i++ < c)
+		while (i++ < c)
 			ft_rotate(st_a, 'a');
 		ft_thirdpush(st_a, st_b, d, c);
 		d++;
@@ -69,7 +69,7 @@ size_t	ft_secondpush(t_stack *st_a, t_stack *st_b, size_t order)
 			ft_rotate(st_b, 'b');
 		i++;
 	}
-	return(c);
+	return (c);
 }
 
 void	ft_thirdpush(t_stack *st_a, t_stack *st_b, size_t order, size_t c)
@@ -91,11 +91,11 @@ void	ft_thirdpush(t_stack *st_a, t_stack *st_b, size_t order, size_t c)
 
 void	ft_lastpush(t_stack *st_a, t_stack *st_b)
 {
-	size_t i;
-	size_t size;
+	size_t	i;
+	size_t	size;
 
 	i = 0;
 	size = st_b->size;
-	while(i++ < size)
+	while (i++ < size)
 		ft_push(st_b, st_a, 'a');
 }
