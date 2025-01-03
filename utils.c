@@ -6,7 +6,7 @@
 /*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 12:26:01 by mfukui            #+#    #+#             */
-/*   Updated: 2024/11/25 19:35:35 by mfukui           ###   ########.fr       */
+/*   Updated: 2025/01/03 20:18:30 by mfukui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	*ft_assign_rank(int *str, size_t size)
 
 	result = malloc(sizeof(size_t) * size);
 	if (!result)
-		return (ft_error(4), NULL);
+		return (NULL);
 	i = 0;
 	while (i < size)
 	{
@@ -59,38 +59,39 @@ int	*ft_atoi_rmkd(char **str, size_t argc)
 	int		sign;
 	int		*result;
 
-	result = ft_calloc(argc, sizeof(int));
+	if (!str || !*str)
+		return (ft_error(1), NULL);
+	result = ft_calloc(argc - 1, sizeof(int));
 	if (!result)
 		return (ft_error(4), NULL);
 	i = 0;
 	while (str[i])
 	{
-		sign = 1;
+		sign = is_sign(str);
 		j = 0;
-		while (is_sp(str[i][j]) == 1 || str[i][j] == '+' || str[i][j++] == '-')
-			if (str[i][j++] == '-')
-				sign = -1;
-		while (ft_isdigit(str[i][j++] == 1))
-			atoi_helper(str[i][j], result);
+		while (is_sp(str[i][j]) == 1 || str[i][j] == '+' || str[i][j] == '-')
+			j++;
+		while (ft_isdigit(str[i][j]) == 1)
+			if (atoi_helper(str[i][j++], &result[i], sign) == -1)
+				return (free(result), NULL);
 		if (str[i][j] != '\0')
-			return (ft_error(1), NULL);
+			return (ft_error(1), free(result), NULL);
 		result[i++] *= sign;
 	}
-	if (ft_duplication(result, argc - 1) == 1)
-		return (ft_error(2), NULL);
 	return (result);
 }
 
-void	atoi_helper(char str, int *res)
+int	atoi_helper(char str, int *res, int sign)
 {
 	if ((INT_MAX - (str - '0')) / 10 < *res * sign)
-		return (ft_error(3), free(res), NULL);
+		return (ft_error(3), -1);
 	if ((INT_MIN + (str - '0')) / 10 > *res * sign)
-		return (ft_error(3), free(res), NULL);
+		return (ft_error(3), -1);
 	*res = *res * 10 + (str - '0');
+	return (0);
 }
 
-int	is_sp(int c)
+int	is_sp(char c)
 {
 	if (c == ' ' || (9 <= c && c <= 13))
 		return (1);

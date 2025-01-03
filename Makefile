@@ -6,7 +6,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 # ソースファイルとオブジェクトファイル
-SRCS = main.c sort.c utils.c perser.c algorithm.c stack.c exception.c
+SRCS = main.c sort.c utils.c utils2.c perser.c algorithm.c stack.c exception.c
 OBJS = $(SRCS:.c=.o)
 
 # ヘッダーファイル

@@ -6,7 +6,7 @@
 /*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 12:15:12 by mfukui            #+#    #+#             */
-/*   Updated: 2024/11/12 17:59:59 by mfukui           ###   ########.fr       */
+/*   Updated: 2025/01/03 18:24:15 by mfukui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_duplication(int *arg, size_t size)
 		j = 0;
 		while (i + j + 1 < size)
 		{
-			if (i != i + j + 1 && arg[i] == arg[i + j + 1])
+			if (arg[i] == arg[i + j + 1])
 				return (1);
 			j++;
 		}

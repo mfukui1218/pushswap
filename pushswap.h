@@ -6,7 +6,7 @@
 /*   By: mfukui <mfukui@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 02:19:12 by mfukui            #+#    #+#             */
-/*   Updated: 2024/11/12 18:12:54 by mfukui           ###   ########.fr       */
+/*   Updated: 2025/01/03 20:12:45 by mfukui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 typedef struct s_node
 {
 	int				data;
+	size_t			data_order;
 	struct s_node	*next;
 	struct s_node	*prev;
 }	t_node;
@@ -49,15 +50,21 @@ size_t	ft_bitlen(size_t num);
 void	ft_error(int i);
 int		*ft_atoi_rmkd(char **str, size_t size);
 int		ft_duplication(int *arg, size_t size);
-t_stack	*init_stack(size_t size, size_t *values);
+t_stack	*init_stack(size_t size, size_t *rank, int *values);
 void	ft_malloc_node(t_stack *stack);
 void	free_stack(t_stack *stack);
-void    ft_firstpush(t_stack *st_a, t_stack *st_b);
-size_t  ft_secondpush(t_stack *st_a, t_stack *st_b, size_t order);
-void    ft_thirdpush(t_stack *st_a, t_stack *st_b, size_t order, size_t c);
-void    ft_lastpush(t_stack *st_a, t_stack *st_b);
-size_t ft_strlenx(char **str);
-void print_stack(t_stack *stack);
-char *int_to_binary(int n);
+void	ft_firstpush(t_stack *st_a, t_stack *st_b);
+size_t	ft_secondpush(t_stack *st_a, t_stack *st_b, size_t order);
+void	ft_thirdpush(t_stack *st_a, t_stack *st_b, size_t order, size_t c);
+void	ft_lastpush(t_stack *st_a, t_stack *st_b);
+size_t	ft_strlenx(char **str);
+void	print_stack(t_stack *stack);
+char	*int_to_binary(int n);
+int		atoi_helper(char str, int *res, int sign);
+int		is_sp(char c);
+void	ft_threesort_h(t_stack *st_a, t_stack *st_b, int flag);
+void	main_algo(t_stack *st_a, t_stack *st_b, int argc);
+t_node	*create_node(size_t data_order, int data);
+int		is_sign(char **str);
 
 #endif

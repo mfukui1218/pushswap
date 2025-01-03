@@ -41,7 +41,7 @@ void	ft_firstpush(t_stack *st_a, t_stack *st_b)
 	size = st_a->size;
 	while (i < size)
 	{
-		if ((st_a->top->data & (1 << 0)) == 0)
+		if ((st_a->top->data_order & (1 << 0)) == 0)
 			ft_push(st_a, st_b, 'b');
 		else
 			ft_rotate(st_a, 'a');
@@ -60,7 +60,7 @@ size_t	ft_secondpush(t_stack *st_a, t_stack *st_b, size_t order)
 	size = st_b->size;
 	while (i < size)
 	{
-		if ((st_b->top->data & (1 << order)) != 0)
+		if ((st_b->top->data_order & (1 << order)) != 0)
 		{
 			ft_push(st_b, st_a, 'a');
 			c++;
@@ -81,7 +81,7 @@ void	ft_thirdpush(t_stack *st_a, t_stack *st_b, size_t order, size_t c)
 	size = st_a->size - c;
 	while (i < size)
 	{
-		if ((st_a->top->data & (1 << order)) == 0)
+		if ((st_a->top->data_order & (1 << order)) == 0)
 			ft_push(st_a, st_b, 'b');
 		else
 			ft_rotate(st_a, 'a');
