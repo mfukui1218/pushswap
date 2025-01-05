@@ -28,13 +28,14 @@ void	ft_swap(t_stack *stack, char c)
 	second->next = first;
 	first->prev = second;
 	stack->top = second;
-	ft_printf("s%c\n", c);
+	if(c)
+		ft_printf("s%c\n", c);
 }
 
 void	ft_ss(t_stack *st_a, t_stack *st_b)
 {
-	ft_swap(st_a, 'a');
-	ft_swap(st_b, 'b');
+	ft_swap(st_a, 0);
+	ft_swap(st_b, 0);
 	write(1, "ss\n", 3);
 }
 

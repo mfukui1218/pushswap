@@ -26,8 +26,8 @@ typedef struct s_node
 {
 	int				data;
 	size_t			data_order;
-	struct s_node	*next;
 	struct s_node	*prev;
+	struct s_node	*next;
 }	t_node;
 
 typedef struct s_stack
@@ -42,8 +42,10 @@ void	ft_push(t_stack *st_a, t_stack *st_b, char c);
 void	ft_rotate(t_stack *stack, char c);
 void	ft_reverse_rotate(t_stack *stack, char c);
 void	ft_twosort(t_stack *stack);
-void	ft_threesort(t_stack *stack, t_stack *stack_b, int flag);
+void	ft_threesort(t_stack *stack);
+void	ft_foursort(t_stack *st_a, t_stack *st_b);
 void	ft_fivesort(t_stack *st_a, t_stack *st_b);
+void	ft_three_to_five(t_stack *st_a, t_stack *st_b);
 void	ft_algorithm(t_stack *st_a, t_stack *st_b, size_t bitlen);
 size_t	*ft_assign_rank(int *str, size_t size);
 size_t	ft_bitlen(size_t num);
@@ -65,6 +67,8 @@ int		is_sp(char c);
 void	ft_threesort_h(t_stack *st_a, t_stack *st_b, int flag);
 void	main_algo(t_stack *st_a, t_stack *st_b, int argc);
 t_node	*create_node(size_t data_order, int data);
-int		is_sign(char **str);
+int		is_sign(char *str);
+
+void print_stack(t_stack *stack);
 
 #endif

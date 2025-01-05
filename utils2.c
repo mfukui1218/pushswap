@@ -17,29 +17,37 @@ void	main_algo(t_stack *st_a, t_stack *st_b, int argc)
 	if (argc - 1 == 2)
 		ft_twosort(st_a);
 	else if (argc - 1 == 3)
-		ft_threesort(st_a, st_b, 0);
+		ft_threesort(st_a);
+	else if (argc - 1 == 4)
+		ft_foursort(st_a, st_b);
 	else if (argc - 1 == 5)
 		ft_fivesort(st_a, st_b);
 	else
 		ft_algorithm(st_a, st_b, ft_bitlen(argc - 1));
 }
 
-int	is_sign(char **str)
+int	is_sign(char *str)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
 	while (str[i])
 	{
-		j = 0;
-		while (str[i][j])
-		{
-			if (str[i][j])
-				return (-1);
-			j++;
-		}
+		if (str[i] == '-')
+			return (-1);
 		i++;
 	}
 	return (1);
 }
+
+// void print_stack(t_stack *stack) {
+//     t_node *current = stack->top;
+//     printf("Stack: ");
+//     while (current)
+// 	{
+//         printf("data:%d ", current->data);
+// 		printf("data_order:%ld \n", current->data_order);
+//         current = current->next;
+//     }
+//     printf("\n");
+// }

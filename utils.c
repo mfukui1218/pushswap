@@ -18,9 +18,11 @@ size_t	*ft_assign_rank(int *str, size_t size)
 	size_t	j;
 	size_t	*result;
 
+	if (!str)
+		return (ft_error(1), NULL);
 	result = malloc(sizeof(size_t) * size);
 	if (!result)
-		return (NULL);
+		return (ft_error(4), NULL);
 	i = 0;
 	while (i < size)
 	{
@@ -28,9 +30,7 @@ size_t	*ft_assign_rank(int *str, size_t size)
 		j = 0;
 		while (j < size)
 		{
-			if (!str)
-				return (ft_error(1), free(result), NULL);
-			if (str[j] > str[i])
+			if (str[j] < str[i])
 				result[i]++;
 			j++;
 		}
@@ -67,7 +67,7 @@ int	*ft_atoi_rmkd(char **str, size_t argc)
 	i = 0;
 	while (str[i])
 	{
-		sign = is_sign(str);
+		sign = is_sign(str[i]);
 		j = 0;
 		while (is_sp(str[i][j]) == 1 || str[i][j] == '+' || str[i][j] == '-')
 			j++;

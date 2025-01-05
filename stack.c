@@ -33,6 +33,7 @@ t_stack	*init_stack(size_t size, size_t *rank, int *values)
 {
 	t_stack	*stack;
 	t_node	*node;
+	t_node	*temp;
 	size_t	i;
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
@@ -46,10 +47,17 @@ t_stack	*init_stack(size_t size, size_t *rank, int *values)
 		node = create_node(rank[i], values[i]);
 		if (!node)
 			return (free_stack(stack), NULL);
-		node->next = stack->top;
-		if (stack->top)
-			stack->top->prev = node;
-		stack->top = node;
+		if (i == 0)
+		{
+			stack->top = node;
+			temp = node;
+		}
+		else
+		{
+			temp->next = node;
+			node->prev = temp;
+			temp = node;
+		}
 		stack->size++;
 		i++;
 	}

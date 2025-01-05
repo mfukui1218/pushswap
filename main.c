@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	size_t	*rank;
 
 	if (argc < 2 || !argv[1])
-		return (ft_error(0), 1);
+		return (1);
 	values = ft_atoi_rmkd(argv + 1, argc);
 	if (ft_duplication(values, argc - 1) == 1)
 		return (ft_error(2), free(values), 1);
