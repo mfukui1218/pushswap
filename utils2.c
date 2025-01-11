@@ -40,6 +40,52 @@ int	is_sign(char *str)
 	return (1);
 }
 
+int ft_isorder(t_stack *st_a)
+{
+	t_node *current;
+
+	current = st_a->top;
+	while(current && current->next)
+	{
+		if(current->data > current->next->data)
+			return(0);
+		current = current->next;
+	}
+	return (1);
+}
+
+int	ft_word_c(const char *str, char ch, int argc)
+{
+	int	i;
+	int	c;
+
+	i = 0;
+	c = 0;
+	if(argc == 1)
+		return (-1);
+	while (str[i])
+	{
+		while (str[i] == ch)
+			i++;
+		if (str[i] && str[i] != ch)
+		{
+			c++;
+			while (str[i] && str[i] != ch)
+			{
+				if (!((str[i] >= '0' && str[i] <= '9') || str[i] == '+' || str[i] == '-'))
+					return (ft_error(1), -1);
+				i++;
+			}
+		}
+	}
+	return (c);
+}
+
+void	ft_doublefree(int *values, size_t *rank)
+{
+	free(values);
+	free(rank);
+}
 // void print_stack(t_stack *stack) {
 //     t_node *current = stack->top;
 //     printf("Stack: ");

@@ -68,7 +68,10 @@ void	ft_threesort_h(t_stack *st_a, t_stack *st_b, int flag);
 void	main_algo(t_stack *st_a, t_stack *st_b, int argc);
 t_node	*create_node(size_t data_order, int data);
 int		is_sign(char *str);
-
-void print_stack(t_stack *stack);
+int		ft_first_error(int *values, size_t size);
+int		ft_isnum(int *values);
+int		ft_isorder(t_stack *st_a);
+int		ft_word_c(const char *str, char ch, int argc);
+void	ft_doublefree(int *values, size_t *rank);
 
 #endif

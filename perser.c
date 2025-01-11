@@ -28,12 +28,29 @@ void	ft_error(int i)
 		ft_printf("%s", "Error: Invalid instruction\n");
 }
 
+int ft_first_error(int *values, size_t size)
+{
+	if (!values)
+	{
+		return (0);
+	}
+	else if (ft_duplication(values, size) == 1)
+	{
+		ft_error(2);
+		free(values);
+		return (0);
+	}
+	return (1);
+}
+
 int	ft_duplication(int *arg, size_t size)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
+	if (!arg)
+		return (0);
 	while (i < size)
 	{
 		j = 0;
@@ -46,4 +63,17 @@ int	ft_duplication(int *arg, size_t size)
 		i++;
 	}
 	return (0);
+}
+
+int	ft_isnum(int *values)
+{
+	size_t	i;
+
+	i = 0;
+	if (!values)
+		return (0);
+	while(values[i])
+		if(ft_isdigit(values[i]) == 0)
+			return (0);
+	return (1);
 }

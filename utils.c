@@ -59,8 +59,8 @@ int	*ft_atoi_rmkd(char **str, size_t argc)
 	int		sign;
 	int		*result;
 
-	if (!str || !*str)
-		return (ft_error(1), NULL);
+	if (!str || !*str || argc == 0)
+		return (NULL);
 	result = ft_calloc(argc - 1, sizeof(int));
 	if (!result)
 		return (ft_error(4), NULL);
@@ -73,7 +73,7 @@ int	*ft_atoi_rmkd(char **str, size_t argc)
 			j++;
 		while (ft_isdigit(str[i][j]) == 1)
 			if (atoi_helper(str[i][j++], &result[i], sign) == -1)
-				return (free(result), NULL);
+				return (ft_error(3), free(result), NULL);
 		if (str[i][j] != '\0')
 			return (ft_error(1), free(result), NULL);
 		result[i++] *= sign;
@@ -84,9 +84,9 @@ int	*ft_atoi_rmkd(char **str, size_t argc)
 int	atoi_helper(char str, int *res, int sign)
 {
 	if ((INT_MAX - (str - '0')) / 10 < *res * sign)
-		return (ft_error(3), -1);
+		return (-1);
 	if ((INT_MIN + (str - '0')) / 10 > *res * sign)
-		return (ft_error(3), -1);
+		return (-1);
 	*res = *res * 10 + (str - '0');
 	return (0);
 }

@@ -48,16 +48,13 @@ t_stack	*init_stack(size_t size, size_t *rank, int *values)
 		if (!node)
 			return (free_stack(stack), NULL);
 		if (i == 0)
-		{
 			stack->top = node;
-			temp = node;
-		}
 		else
 		{
 			temp->next = node;
 			node->prev = temp;
-			temp = node;
 		}
+		temp = node;
 		stack->size++;
 		i++;
 	}

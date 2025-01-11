@@ -17,7 +17,8 @@ void	ft_algorithm(t_stack *st_a, t_stack *st_b, size_t bitlen)
 	size_t	d;
 	size_t	c;
 	size_t	i;
-
+	if(ft_isorder(st_a) == 1)
+		return ;
 	ft_firstpush(st_a, st_b);
 	d = 1;
 	while (d < bitlen)
